@@ -1,0 +1,8 @@
+FROM node:latest
+WORKDIR app
+COPY image ./image
+COPY static ./static
+COPY app.js .
+COPY package.json .
+RUN npm i
+CMD ["node","app.js"]

@@ -1,0 +1,25 @@
+version: '3'
+name: Docker-example
+services:
+  db:
+    image: mongo:latest
+    volumes:
+      - /data:/data/db
+    ports: 
+      - "27107:27017"
+    container_name: example-database
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.webapp
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - "db"
+    container_name: example-webapp
+    links:
+      - "db:database"
+
+
+
+
